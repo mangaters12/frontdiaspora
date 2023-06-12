@@ -1,92 +1,349 @@
-# System Management School Management Laravel
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Waktu pembuatan: 12 Jun 2023 pada 09.35
+-- Versi server: 10.4.28-MariaDB
+-- Versi PHP: 8.0.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-## Getting started
+--
+-- Database: `diaspora`
+--
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+-- --------------------------------------------------------
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+--
+-- Struktur dari tabel `diaspora`
+--
 
-## Add your files
+CREATE TABLE `diaspora` (
+  `name` varchar(50) DEFAULT NULL,
+  `gender` varchar(15) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `phone_number1` int(11) NOT NULL,
+  `phone_number2` int(15) NOT NULL,
+  `country` varchar(50) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `zip_code` int(10) NOT NULL,
+  `address` varchar(150) NOT NULL,
+  `place_birth` varchar(100) NOT NULL,
+  `date_of_birth` date NOT NULL,
+  `profession` varchar(30) NOT NULL,
+  `link_facebook` varchar(500) NOT NULL,
+  `link_instagram` varchar(500) NOT NULL,
+  `link_tiktok` varchar(500) NOT NULL,
+  `link_twitter` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+-- --------------------------------------------------------
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/SoengSouy/school_sm_laravel9.git
-git branch -M main
-git push -uf origin main
-```
+--
+-- Struktur dari tabel `migrations`
+--
 
-## Integrate with your tools
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-- [ ] [Set up project integrations](https://gitlab.com/SoengSouy/school_sm_laravel9/-/settings/integrations)
+--
+-- Dumping data untuk tabel `migrations`
+--
 
-## Collaborate with your team
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_08_12_000000_create_users_table', 1),
+(2, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(3, '2022_08_03_061844_create_user_types_table', 1),
+(4, '2022_08_03_061918_create_role_type_users_table', 1),
+(5, '2022_08_04_053627_create_sequence_tbls_table', 1),
+(6, '2022_08_04_053741_create_generate_id_tbls_table', 1),
+(7, '2023_02_26_224452_create_students_table', 1),
+(8, '2023_04_17_223959_create_teachers_table', 1);
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+-- --------------------------------------------------------
 
-## Test and Deploy
+--
+-- Struktur dari tabel `personal_access_tokens`
+--
 
-Use the built-in continuous integration in GitLab.
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+-- --------------------------------------------------------
 
-***
+--
+-- Struktur dari tabel `role_type_users`
+--
 
-# Editing this README
+CREATE TABLE `role_type_users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `role_type` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+--
+-- Dumping data untuk tabel `role_type_users`
+--
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+INSERT INTO `role_type_users` (`id`, `role_type`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', NULL, NULL),
+(2, 'Super Admin', NULL, NULL),
+(3, 'Normal User', NULL, NULL),
+(4, 'Teachers', NULL, NULL),
+(5, 'Student', NULL, NULL);
 
-## Name
-Choose a self-explaining name for your project.
+-- --------------------------------------------------------
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+--
+-- Struktur dari tabel `sequence_tbl`
+--
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+CREATE TABLE `sequence_tbl` (
+  `id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+--
+-- Dumping data untuk tabel `sequence_tbl`
+--
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+INSERT INTO `sequence_tbl` (`id`) VALUES
+(1);
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+-- --------------------------------------------------------
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+--
+-- Struktur dari tabel `students`
+--
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+CREATE TABLE `students` (
+  `name` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone_number1` int(255) DEFAULT NULL,
+  `phone_number2` int(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `zip_code` int(6) DEFAULT NULL,
+  `place_birth` varchar(255) DEFAULT NULL,
+  `date_of_birth` varchar(255) DEFAULT NULL,
+  `profession` varchar(255) DEFAULT NULL,
+  `link_facebook` varchar(200) DEFAULT NULL,
+  `link_instagram` varchar(200) DEFAULT NULL,
+  `link_tiktok` varchar(200) DEFAULT NULL,
+  `link_twitter` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+-- --------------------------------------------------------
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+--
+-- Struktur dari tabel `teachers`
+--
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+CREATE TABLE `teachers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `teacher_id` varchar(255) DEFAULT NULL,
+  `full_name` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `date_of_birth` varchar(255) DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  `joining_date` varchar(255) DEFAULT NULL,
+  `qualification` varchar(255) DEFAULT NULL,
+  `experience` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `zip_code` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+-- --------------------------------------------------------
 
-## License
-For open source projects, say how it is licensed.
+--
+-- Struktur dari tabel `users`
+--
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `user_id` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `join_date` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `role_name` varchar(255) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `position` varchar(255) DEFAULT NULL,
+  `department` varchar(255) DEFAULT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `user_id`, `email`, `join_date`, `phone_number`, `status`, `role_name`, `avatar`, `position`, `department`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Subhan', '00001', 'subhan@gmail.com', 'Sun, Jun 11, 2023 2:03 PM', '081398866755', 'Active', 'Super Admin', '881539851.png', 'IT', 'MB-Build', NULL, '$2y$10$OUvpyrMw6WDTxpRWqzYE6O2one.U3bEt6kANQJYtCHn8GJR4jrqZu', NULL, '2023-06-11 07:03:22', '2023-06-11 19:54:31');
+
+--
+-- Trigger `users`
+--
+DELIMITER $$
+CREATE TRIGGER `id_store` BEFORE INSERT ON `users` FOR EACH ROW BEGIN
+                INSERT INTO sequence_tbl VALUES (NULL);
+                SET NEW.user_id = CONCAT("0", LPAD(LAST_INSERT_ID(), 4, "0"));
+            END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_types`
+--
+
+CREATE TABLE `user_types` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `type_name` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `user_types`
+--
+
+INSERT INTO `user_types` (`id`, `type_name`, `created_at`, `updated_at`) VALUES
+(1, 'Active', NULL, NULL),
+(2, 'Inactive', NULL, NULL),
+(3, 'Disable', NULL, NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indeks untuk tabel `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indeks untuk tabel `role_type_users`
+--
+ALTER TABLE `role_type_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `sequence_tbl`
+--
+ALTER TABLE `sequence_tbl`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `teachers`
+--
+ALTER TABLE `teachers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `user_types`
+--
+ALTER TABLE `user_types`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `role_type_users`
+--
+ALTER TABLE `role_type_users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `sequence_tbl`
+--
+ALTER TABLE `sequence_tbl`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `teachers`
+--
+ALTER TABLE `teachers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_types`
+--
+ALTER TABLE `user_types`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
