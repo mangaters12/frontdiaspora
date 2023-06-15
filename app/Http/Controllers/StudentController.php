@@ -33,18 +33,23 @@ class StudentController extends Controller
     public function studentSave(Request $request)
     {
         $request->validate([
-            'first_name'    => 'required|string',
-            'last_name'     => 'required|string',
+            'name'    => 'required|string',
+            'email'     => 'required|email',
             'gender'        => 'required|not_in:0',
-            'date_of_birth' => 'required|string',
-            'roll'          => 'required|string',
-            'blood_group'   => 'required|string',
-            'religion'      => 'required|string',
-            'email'         => 'required|email',
-            'class'         => 'required|string',
-            'section'       => 'required|string',
-            'admission_id'  => 'required|string',
-            'phone_number'  => 'required',
+            'phone_number1' => 'required|string',
+            'phone_number2'          => 'required|string',
+            'country'   => 'required|string',
+            'state'      => 'required|string',
+            'city'         => 'required|string',
+            'zip_code'         => 'required|string',
+            'address'       => 'required|string',
+            'place_birth'       => 'required|string',
+            'date_of_birth'       => 'required|string',
+            'profession'       => 'required|string',
+            'link_facebook'  => 'required|string',
+            'link_instagram'  => 'required|string',
+            'link_tiktok'  => 'required|string',
+            'link_twitter'  => 'required',
             'upload'        => 'required|image',
         ]);
         
@@ -55,18 +60,22 @@ class StudentController extends Controller
             $request->upload->move(storage_path('app/public/student-photos/'), $upload_file);
             if(!empty($request->upload)) {
                 $student = new Student;
-                $student->first_name   = $request->first_name;
-                $student->last_name    = $request->last_name;
+                $student->name   = $request->name;
+                $student->email    = $request->email;
                 $student->gender       = $request->gender;
-                $student->date_of_birth= $request->date_of_birth;
-                $student->roll         = $request->roll;
-                $student->blood_group  = $request->blood_group;
-                $student->religion     = $request->religion;
-                $student->email        = $request->email;
-                $student->class        = $request->class;
-                $student->section      = $request->section;
-                $student->admission_id = $request->admission_id;
-                $student->phone_number = $request->phone_number;
+                $student->phone_number1= $request->phone_number1;
+                $student->phone_number2         = $request->phone_number2;
+                $student->country  = $request->country;
+                $student->state     = $request->state;
+                $student->city        = $request->city;
+                $student->zip_code        = $request->zip_code;
+                $student->place_birth      = $request->place_birth;
+                $student->date_of_birth      = $request->date_of_birth;
+                $student->address      = $request->address;
+                $student->link_facebook = $request->link_facebook;
+                $student->link_instagram = $request->link_instagram;
+                $student->link_tiktok = $request->link_tiktok;
+                $student->link_twitter= $request->link_twitter;
                 $student->upload = $upload_file;
                 $student->save();
 
@@ -123,6 +132,7 @@ class StudentController extends Controller
     /** student delete */
     public function studentDelete(Request $request)
     {
+        dd('oke');
         DB::beginTransaction();
         try {
            

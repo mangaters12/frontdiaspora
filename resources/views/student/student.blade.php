@@ -89,14 +89,14 @@
                                                 </div>
                                             </td>
                                             <td>STD{{ ++$key }}</td>
-                                            <td hidden class="id">{{ $list->id }}</td>
+                                            <td hidden class="name">{{ $list->name }}</td>
                                             <td hidden class="avatar">{{ $list->upload }}</td>
                                             <td>
                                                 <h2 class="table-avatar">
                                                     <a href="student-details.html"class="avatar avatar-sm me-2">
                                                         <img class="avatar-img rounded-circle" src="{{ Storage::url('student-photos/'.$list->upload) }}" alt="User Image">
                                                     </a>
-                                                    <a href="student-details.html">{{ $list->first_name }} {{ $list->last_name }}</a>
+                                                    <a href="student-details.html">{{ $list->name }} {{ $list->gender }}</a>
                                                 </h2>
                                             </td>
                                             <td>{{ $list->class }} {{ $list->section }}</td>
@@ -135,15 +135,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('student/delete') }}" method="POST">
+                    <form action="{{ url('/student/delete') }}" method="POST">
                         @csrf
+                        @method('delete')
                         <div class="delete-wrap text-center">
                             <div class="del-icon">
                                 <i class="feather-x-circle"></i>
                             </div>
                             <input type="hidden" name="id" class="e_id" value="">
                             <input type="hidden" name="avatar" class="e_avatar" value="">
-                            <h2>Sure you want to delete</h2>
+                            <h2>Sure you want to delete suban</h2>
                             <div class="submit-section">
                                 <button type="submit" class="btn btn-success me-2">Yes</button>
                                 <a class="btn btn-danger" data-bs-dismiss="modal">No</a>

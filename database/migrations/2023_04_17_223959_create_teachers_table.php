@@ -14,21 +14,25 @@ return new class extends Migration
     public function up()
     {
         Schema::create('teachers', function (Blueprint $table) {
-            $table->id();
-            $table->string('teacher_id')->nullable();
-            $table->string('full_name')->nullable();
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
             $table->string('gender')->nullable();
-            $table->string('date_of_birth')->nullable();
-            $table->string('mobile')->nullable();
-            $table->string('joining_date')->nullable();
-            $table->string('qualification')->nullable();
-            $table->string('experience')->nullable();
-            $table->string('username')->nullable();
-            $table->string('address')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('zip_code')->nullable();
+            $table->string('phone_number1')->nullable();
+            $table->string('phone_number2')->nullable();
             $table->string('country')->nullable();
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->string('address')->nullable();
+            $table->string('place_birth')->nullable();
+            $table->string('date_of_birth')->nullable();
+            $table->string('place_birth')->nullable();
+            $table->string('profession')->nullable();
+            $table->string('link_facebook')->nullable();
+            $table->string('link_instagram')->nullable();
+            $table->string('link_tiktok')->nullable();
+            $table->string('link_twitter')->nullable();
+            $table->string('upload')->nullable();
             $table->timestamps();
         });
     }
